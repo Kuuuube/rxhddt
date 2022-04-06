@@ -1,8 +1,6 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -163,37 +161,6 @@ namespace RXHDDT.Util
     private static bool ContainsMods(Mods allMods, Mods modsToCheck)
     {
       return (uint)(allMods & modsToCheck) > 0U;
-    }
-
-    public static string GetPath()
-    {
-      string str = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Classes\\osu!\\DefaultIcon")?.GetValue(null).ToString();
-      return str?.Substring(1, str.Length - 4);
-    }
-
-    public static int GetLastOsuVersion()
-    {
-      return GetLastOsuVersion(GetPath());
-    }
-
-    public static int GetLastOsuVersion(string path)
-    {
-      try
-      {
-        using (StreamReader streamReader = new StreamReader(path))
-        {
-          while (!streamReader.EndOfStream)
-          {
-            string str = streamReader.ReadLine();
-            if (str != null && str.StartsWith("LastVersion"))
-              return int.Parse(str.Split('=').Last().Trim().Substring(1, 8));
-          }
-        }
-      }
-      catch
-      {
-      }
-      return 0;
     }
 
     public enum Rankings

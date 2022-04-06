@@ -1,15 +1,11 @@
 ﻿using RXHDDT.Util;
 using SevenZip.Compression.LZMA;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace RXHDDT
 {
   class Program
@@ -17,14 +13,11 @@ namespace RXHDDT
     [STAThread]
     static void Main(string[] args)
     {
-      Console.WriteLine("Select the replay file.");
-      OpenFileDialog ofd = new OpenFileDialog();
-      ofd.Filter = "Osu Replay Files|*.osr";
-      if (ofd.ShowDialog() != DialogResult.OK)
-        return;
+      Console.WriteLine("Replay file path: ");
+      string openfilename = Console.ReadLine();
       Console.Clear();
       Console.WriteLine("Loading replay...");
-      ReplayFile replay = ReplayHelper.ReadFile(ofd.FileName);
+      ReplayFile replay = ReplayHelper.ReadFile(openfilename);
       OsuHelper.Mods modsBefore = (OsuHelper.Mods)replay.UsedMods;
 
       List<(string fullname, string shortname, int priority, OsuHelper.Mods mod, char key)> availableMods = new List<(string fullname, string shortname, int priority, OsuHelper.Mods mod, char key)>()
@@ -123,18 +116,15 @@ namespace RXHDDT
         replay = flipNotes(replay);
 
       Console.Clear();
-      Console.WriteLine("Select a path for the new replay file.");
-      SaveFileDialog sfd = new SaveFileDialog();
-      sfd.Filter = "Osu Replay Files|*.osr";
-      if (sfd.ShowDialog() != DialogResult.OK)
-        return;
-      if (File.Exists(sfd.FileName))
-        File.Delete(sfd.FileName);
+      Console.WriteLine("Path for the new replay file: ");
+      string savefilename = Console.ReadLine();
+      if (File.Exists(savefilename))
+        File.Delete(savefilename);
       Console.Clear();
       Console.WriteLine("Saving replay...");
       replay.ReplayDate = DateTime.UtcNow; // fix replay data cache problem
       replay.ReplayHash = ReplayHelper.GetReplayHash(replay);
-      ReplayHelper.SaveFile(sfd.FileName, replay);
+      ReplayHelper.SaveFile(savefilename, replay);
     }
 
     static ReplayFile flipNotes(ReplayFile replay)
