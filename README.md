@@ -10,7 +10,7 @@ Downloads with are available in [Releases](https://github.com/Kuuuube/rxhddt/rel
 
 ## How it works
 
-1. Start the program and enter the pathe to the replay file you want to edit.
+1. Start the program and enter the path to the replay file you want to edit.
 
 2. Change the mods by pressing the corresponding keys on your keyboard.
 
