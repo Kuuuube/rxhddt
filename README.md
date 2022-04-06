@@ -6,7 +6,7 @@ Thanks to the osu!ftw replay editor for providing code to read and write replays
 
 ## Downloads
 
-Downloads with are available in [Releases](https://github.com/Kuuuube/rxhddt/releases).
+Downloads are available in [Releases](https://github.com/Kuuuube/rxhddt/releases).
 
 ## How it works
 
