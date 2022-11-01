@@ -16,6 +16,10 @@ Downloads are available in [Releases](https://github.com/Kuuuube/rxhddt/releases
 
 3. Press enter and enter a path to save the edited replay.
 
+## Dependencies
+
+.Net Runtime 6.0 x64: https://dotnet.microsoft.com/en-us/download/dotnet/6.0
+
 ## Building:
 
 Run the following in powershell:
